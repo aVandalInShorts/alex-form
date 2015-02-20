@@ -589,13 +589,13 @@
 		padding-left: @alex-form-field-padding-sides;
 		padding-right: @alex-form-field-padding-sides;
 		#box-sizing;
-		color: @alex-form-dark-gray;
+		color: @alex-form-field-font-color;
 		background-color: @alex-form-field-bgcolor;
 		
 		#placeholder ({
-			font-size: 2.1rem;
-			line-height: 2.1rem;
-			color: fade(@alex-form-dark-gray,100%);
+			font-size: @alex-form-field-placeholder-font-size;
+			line-height: @alex-form-field-placeholder-line-height;
+			color: @alex-form-field-placeholder-color;
 			padding-top: 0.5rem;
 		});
 	}
