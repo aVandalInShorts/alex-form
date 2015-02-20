@@ -515,38 +515,54 @@
 		}
 	}
 	
-	&.hasChar, &.error {
-		textarea {
-			margin-top: 3rem;
-			
-			#mq-max-width(@screen-ph, {
+	&.has-label {
+		&.hasChar, &.error {
+			textarea {
 				margin-top: 3rem;
-			});
-		}
-		
-		input {
-			#transform(translateY(-15%));
-		}
-		
-		&.input {
-			label {
-				bottom: 56%;
-				#transform(translateY(-25%));
 				
-				#mq-max-width(@screen-sm, {
-					bottom: 48%;
-				});
-				
-				#mq-min-px-ratio (2, {
-					bottom: 60%;
+				#mq-max-width(@screen-ph, {
+					margin-top: 3rem;
 				});
 			}
 			
-		}
-		
-		&.textarea {
-			label {
-				top: 0.5rem;
+			input {
+				#transform(translateY(-15%));
+			}
+			
+			&.input {
+				label {
+					bottom: 56%;
+					#transform(translateY(-25%));
+					
+					#mq-max-width(@screen-sm, {
+						bottom: 48%;
+					});
+					
+					#mq-min-px-ratio (2, {
+						bottom: 60%;
+					});
+				}
+				
+			}
+			
+			&.textarea {
+				label {
+					top: 0.5rem;
+					
+					#mq-max-width(@screen-sm, {
+						top: 0;
+					});
+				}
+				
+				textarea {
+					#mq-max-width(@screen-sm, {
+						margin-top: 3rem;
+					});
+					
+					#mq-max-width(@screen-ph, {
+						margin-top: 4rem;
+					});
+				}
 			}
 		}
 	}
@@ -674,27 +690,6 @@
 						stroke: @alex-form-red;
 					}
 				}
-			}
-		}
-	}
-	
-	
-	&.textarea {
-		&.hasChar, &.error {
-			label {
-				#mq-max-width(@screen-sm, {
-					top: 0;
-				});
-			}
-			
-			textarea {
-				#mq-max-width(@screen-sm, {
-					margin-top: 3rem;
-				});
-				
-				#mq-max-width(@screen-ph, {
-					margin-top: 4rem;
-				});
 			}
 		}
 	}

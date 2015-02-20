@@ -1,8 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" 
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:exslt="http://exslt.org/common"
+	exclude-result-prefixes="exslt">
 
 
 <!-- Page template pour les compasantes de formulaire à Alex -->
+
+<xsl:template name="alex-form-radio">
+	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
+	<xsl:param name="checked" />
+	<xsl:param name="extra-class" />
+	<xsl:param name="data-link" select="''" />
+	<xsl:param name="text" select="''" />
+	<xsl:param name="value" />
+	
+	<div>
+		<xsl:attribute name="class">
+			<xsl:text>alex-form-radio-ctn</xsl:text>
+			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
+				<xsl:text> checked</xsl:text>
+			</xsl:if>
+			<xsl:if test="string-length($extra-class) != 0">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="$extra-class" />
+			</xsl:if>
+		</xsl:attribute>
+		
+		<xsl:if test="string-length($data-link) != 0">
+			<xsl:attribute name="data-link">
+				<xsl:value-of select="$data-link" />
+			</xsl:attribute>
+		</xsl:if>
+	
+		<div class="alex-form-radio-micro">
+			<div class="alex-form-radio-micro-inner-ctn">
+				<span class="alex-form-radio-circle"></span>
+			</div>
+		</div>
+		
+		<xsl:if test="string-length($text) != 0">
+			<label class="alex-form-radio-text">
+				<xsl:value-of select="$text" />
+			</label>
+		</xsl:if>
+		
+		<input type="radio" class="alex-form-radio" value="{$value}">
+		
+			<xsl:attribute name="name">
+				<xsl:value-of select="$name" />
+			</xsl:attribute>
+			
+			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
+				<xsl:attribute name="checked">
+					<xsl:text>checked</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+		</input>
+	</div>
+</xsl:template>
 
 <xsl:template name="alex-form-checkbox">
 	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
@@ -23,9 +79,11 @@
 		</xsl:attribute>
 	
 		<div class="alex-form-checkbox-micro">
-			<span class="alex-form-checkbox-check-icon">
-				<xsl:call-template name="alex-form-checked-icon" />
-			</span>
+			<div class="alex-form-checkbox-micro-inner-ctn">
+				<span class="alex-form-checkbox-check-icon">
+					<xsl:call-template name="alex-form-checked-icon" />
+				</span>
+			</div>
 		</div>
 		
 		<xsl:if test="string-length($text) != 0">
@@ -47,7 +105,6 @@
 			</xsl:if>
 		</input>
 	</div>
-	 
 </xsl:template>
 
 <xsl:template name="alex-form-btn">
@@ -156,7 +213,22 @@
 			
 			<div class="alex-form-btn-text-ctn">
 				<span class="alex-form-btn-text-title">
-					<xsl:value-of select="$text" />
+				
+					<xsl:choose>
+						<xsl:when test="exslt:object-type($text) = 'string'">
+							<xsl:value-of select="$text" />
+						</xsl:when>
+						<xsl:when test="exslt:object-type($text) = 'RTF'">
+							<xsl:copy-of select="$text"/>
+						</xsl:when>
+						<xsl:when test="exslt:object-type($text) = 'node-set' and count($text/*) = 0">
+							<xsl:value-of select="$text" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:copy-of select="$text/*" />
+						</xsl:otherwise>
+					</xsl:choose>
+				
 				</span>
 				
 				<xsl:if test="string-length($error-text) != 0">
@@ -182,60 +254,71 @@
 	<xsl:param name="type" select="'text'" />
 	<!-- Pour les inputs mettre .small ou .big
 	     Pour un textarea, ça ne changera rien  -->
-	<xsl:param name="class" />
+	<xsl:param name="class" select="''" />
 	<xsl:param name="name" select="'THE_FIELDS_NAME'" />
-	<xsl:param name="placeholder" />
-	<xsl:param name="extra-class" />
-	<xsl:param name="label-text" />
-	<xsl:param name="label-id" />
-	<xsl:param name="disabled" />
+	<xsl:param name="placeholder" select="''" />
+	<xsl:param name="error" select="''" />
+	<xsl:param name="extra-class" select="''" />
+	<xsl:param name="label-text" select="''" />
+	<xsl:param name="label-id" select="''" />
+	<xsl:param name="disabled" select="''" />
 	
 	<div>
 		<xsl:attribute name="class">
-			<xsl:text>alex-form-field </xsl:text>
-			<xsl:value-of select="$class" />
+			<xsl:text>alex-form-field</xsl:text>
 			<xsl:text> </xsl:text>
 			<xsl:value-of select="$element" />
+			
+			<xsl:if test="string-length($class) != 0">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="$class" />
+			</xsl:if>
 			
 			<xsl:if test="$disabled = 'Yes' or $disabled = 'disabled'">
 				<xsl:text> disabled</xsl:text>
 			</xsl:if>
+			
+			<xsl:if test="string-length($label-text) != 0 or string-length($placeholder) != 0">
+				<xsl:text> has-label</xsl:text>
+			</xsl:if>
+			
 			<xsl:if test="string-length($extra-class) != 0">
 				<xsl:text> </xsl:text>
 				<xsl:value-of select="$extra-class" />
 			</xsl:if>
 		</xsl:attribute>
 	
-		<label>
-			<xsl:if test="string-length($label-id) != 0">
-				<xsl:attribute name="for">
-					<xsl:value-of select="$label-id" />
-				</xsl:attribute>
-			</xsl:if>
-			
-			<div class="alex-form-field-icons">
-				<div class="alex-form-field-icons-checked">
-					<xsl:call-template name="alex-form-checked-icon" />
+		<xsl:if test="string-length($label-text) != 0 or string-length($placeholder) != 0">
+			<label>
+				<xsl:if test="string-length($label-id) != 0">
+					<xsl:attribute name="for">
+						<xsl:value-of select="$label-id" />
+					</xsl:attribute>
+				</xsl:if>
+				
+				<div class="alex-form-field-icons">
+					<div class="alex-form-field-icons-checked">
+						<xsl:call-template name="alex-form-checked-icon" />
+					</div>
+					<div class="alex-form-field-icons-x">
+						<xsl:call-template name="alex-form-X-icon" />
+					</div>
 				</div>
-				<div class="alex-form-field-icons-x">
-					<xsl:call-template name="alex-form-X-icon" />
-				</div>
-			</div>
-			
-			<span class="error"></span>
-			<span class="normal">
-				<xsl:choose>
-					<xsl:when test="string-length($label-text) != 0">
-						<xsl:value-of select="$label-text" />
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="$placeholder" />
-					</xsl:otherwise>
-				</xsl:choose>
-			</span>
-		</label>
+				
+				<span class="normal">
+					<xsl:choose>
+						<xsl:when test="string-length($label-text) != 0">
+							<xsl:value-of select="$label-text" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="$placeholder" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</span>
+			</label>
+		</xsl:if>
 
-		<xsl:element name="{$element}">
+		<xsl:element name="{$element}" autocomplete="off">
 			<xsl:attribute name="class">
 				<xsl:value-of select="$class" />
 			</xsl:attribute>
