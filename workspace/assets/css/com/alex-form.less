@@ -9,7 +9,7 @@
 	@alex-form-disabled-gray-dark: #ededed;
 	@alex-form-padding-sides: 1.6rem;
 	@alex-form-dark-gray: @font-color;
-	@alex-form-font-family: @font-cabin;
+	@alex-form-font-family: @text-font;
 	@alex-form-font-weight: bold;
 	@alex-form-font-size: 2.1rem;
 	@alex-form-line-height: 2.4rem;
@@ -26,7 +26,7 @@
 		font-size: 12px;
 		line-height: 20px;
 		color: darken(@alex-form-dark-gray, 40%);
-		font-family: @font-cabin;
+		font-family: @alex-form-font-family;
 		
 		&.error {
 			color: @alex-form-red;
@@ -41,7 +41,7 @@
 			
 			.alex-form-checkbox-check-icon {
 				svg {
-					#opacity(1);
+					opacity: 1;
 				}
 			}
 		}
@@ -51,7 +51,7 @@
 		.alex-form-checkbox-micro {
 			.alex-form-checkbox-check-icon {
 				svg {
-					#opacity(1);
+					opacity: 1;
 				}
 			}
 		}
@@ -60,7 +60,7 @@
 	.alex-form-checkbox-text {
 		font-size: 16px;
 		line-height: 20px;
-		font-family: @font-cabin;
+		font-family: @alex-form-font-family;
 		vertical-align: top;
 		margin-left: 10px;
 		font-weight: bold;
@@ -78,7 +78,7 @@
 		&:hover {
 			.alex-form-checkbox-check-icon {
 				svg {
-					#opacity(1);
+					opacity: 1;
 				}
 			}
 		}
@@ -93,7 +93,7 @@
 				left: 0;
 				#wh(12px);
 				margin: 4px;
-				#opacity(0);
+				opacity: 0;
 				#transition(opacity @duration-short @ease);
 				
 				polyline {
@@ -147,7 +147,7 @@
 		font-size: @alex-form-message-font-size;
 		line-height: @alex-form-message-font-size;
 		visibility: hidden;
-		#opacity(0);
+		opacity: 0;
 		#transition(opacity @duration @ease);
 	}
 	
@@ -163,7 +163,7 @@
 			}
 			
 			.alex-form-btn-border {
-				#opacity(0);
+				opacity: 0;
 			}
 			
 			.alex-form-btn-bg-slider {
@@ -199,15 +199,15 @@
 		
 		.alex-form-btn-error-msg {
 			visibility: visible;
-			#opacity(1);
+			opacity: 1;
 		}
 		
 		.alex-form-btn-text-title {
-			#opacity(0);
+			opacity: 0;
 		}
 		
 		.alex-form-btn-text-error {
-			#opacity(1)!important;
+			opacity: 1 !important;
 		}
 	}
 	
@@ -223,13 +223,13 @@
 			}
 			
 			.alex-form-btn-text-title {
-				#opacity(0);
+				opacity: 0;
 			}
 		}
 		
 		.alex-form-btn-success-msg {
 			visibility: visible;
-			#opacity(1);
+			opacity: 1;
 		}
 	}
 	
@@ -318,7 +318,7 @@
 				font-family: @alex-form-font-family;
 				font-weight: @alex-form-font-weight;
 				#transition(~'color @{duration-short} @{ease}, opacity @{duration-short} @{ease}');
-				#opacity(0);
+				opacity: 0;
 			}
 			
 			.alex-form-btn-text-icon-ctn {
@@ -375,17 +375,17 @@
 			}
 			
 			span.error {
-				#opacity(0);
+				opacity: 0;
 				visibility: collapse;
 			}
 			
 			.alex-form-field-icons {
 				.alex-form-field-icons-checked {
-					#opacity(1);
+					opacity: 1;
 				}
 				
 				.alex-form-field-icons-x {
-					#opacity(0);
+					opacity: 0;
 				}
 			}
 		}
@@ -401,17 +401,17 @@
 			}
 			
 			span.normal {
-				#opacity(0);
+				opacity: 0;
 				visibility: collapse;
 			}
 			
 			.alex-form-field-icons {
 				.alex-form-field-icons-checked {
-					#opacity(0);
+					opacity: 0;
 				}
 				
 				.alex-form-field-icons-x {
-					#opacity(1);
+					opacity: 1;
 				}
 			}
 		}
@@ -517,7 +517,7 @@
 			color: @alex-form-red;
 		}
 		
-		font-family: @font-cabin;
+		font-family: @alex-form-font-family;
 		.alex-form-field-icons {
 			#absolute;
 			top: 0;
@@ -529,7 +529,7 @@
 				bottom: 0;
 				left: 0;
 				#wh;
-				#opacity(0);
+				opacity: 0;
 				#transition(opacity @duration-short @ease);
 				
 				svg {
