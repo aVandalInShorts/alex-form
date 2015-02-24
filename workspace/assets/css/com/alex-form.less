@@ -317,9 +317,8 @@
 	.alex-form-btn {
 		#relative;
 		#ib;
-		height: @alex-form-button-height;
 		min-width: @alex-form-button-min-width;
-		padding: @alex-form-button-padding-v-sides @alex-form-button-padding-sides;
+		padding: 0 @alex-form-button-padding-sides;
 		text-align: center;
 		text-decoration: none;
 		background-color: @alex-form-button-bgcolor;
@@ -357,12 +356,9 @@
 			#relative(200);
 			#cb-transition(transform @duration-long @ease @duration);
 			height: 100%;
-			//bottom: 2px;
+			padding: @alex-form-button-padding-v-sides 0;
 			
 			.alex-form-btn-text-title, .alex-form-btn-text-error {
-				top: 50%;
-				left: 50%;
-				#transform(translate(-50%, -50%));
 				color:@alex-form-white;
 			}
 
@@ -380,7 +376,7 @@
 				line-height: @alex-form-button-line-height;
 				text-transform: initial;
 				font-family: @alex-form-font-family;
-				font-weight: @alex-form-button-font-weight;
+				font-weight: @alex-form-font-weight;
 				text-transform: @alex-form-button-text-transform;
 				#transition(~'color @{duration-short} @{ease}, opacity @{duration-short} @{ease}');
 			}
@@ -390,7 +386,7 @@
 				line-height: @alex-form-button-line-height;
 				text-transform: initial;
 				font-family: @alex-form-font-family;
-				font-weight: @alex-form-button-font-weight;
+				font-weight: @alex-form-font-weight;
 				text-transform: @alex-form-button-text-transform;
 				#transition(~'color @{duration-short} @{ease}, opacity @{duration-short} @{ease}');
 				opacity: 0;
@@ -408,7 +404,6 @@
 					top: 50%;
 					left: 50%;
 					#transform(translate(-50%, -50%));
-					margin-left: 1rem;
 					
 					polyline {
 						stroke: @alex-form-white;
