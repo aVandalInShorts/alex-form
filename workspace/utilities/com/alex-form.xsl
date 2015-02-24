@@ -140,24 +140,22 @@
 		<xsl:attribute name="class">
 			<xsl:text>alex-form-btn-ctn</xsl:text>
 			
-			<xsl:if test="string-length($error-message) != 0 and string-length($success-message) != 0">
-				<xsl:text> alex-form-btn-message-</xsl:text>
-				
-				<xsl:choose>
-					<xsl:when test="$message-position = 'top'">
-						<xsl:text>top</xsl:text>
-					</xsl:when>
-					<xsl:when test="$message-position = 'bottom'">
-						<xsl:text>bottom</xsl:text>
-					</xsl:when>
-					<xsl:when test="$message-position = 'left'">
-						<xsl:text>left</xsl:text>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:text>right</xsl:text>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:if>
+			<xsl:text> alex-form-btn-message-</xsl:text>
+			
+			<xsl:choose>
+				<xsl:when test="$message-position = 'top'">
+					<xsl:text>top</xsl:text>
+				</xsl:when>
+				<xsl:when test="$message-position = 'bottom'">
+					<xsl:text>bottom</xsl:text>
+				</xsl:when>
+				<xsl:when test="$message-position = 'left'">
+					<xsl:text>left</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>right</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
 			
 			<xsl:if test="string-length($extra-class) != 0">
 				<xsl:text> </xsl:text>
@@ -257,9 +255,8 @@
 	<xsl:param name="class" select="''" />
 	<xsl:param name="name" select="'THE_FIELDS_NAME'" />
 	<xsl:param name="placeholder" select="''" />
-	<xsl:param name="error" select="''" />
 	<xsl:param name="extra-class" select="''" />
-	<xsl:param name="label-text" select="''" />
+	<xsl:param name="label-text" select="$placeholder" />
 	<xsl:param name="label-id" select="''" />
 	<xsl:param name="disabled" select="''" />
 	
@@ -278,7 +275,7 @@
 				<xsl:text> disabled</xsl:text>
 			</xsl:if>
 			
-			<xsl:if test="string-length($label-text) != 0 or string-length($placeholder) != 0">
+			<xsl:if test="string-length($label-text) != 0">
 				<xsl:text> has-label</xsl:text>
 			</xsl:if>
 			
@@ -287,36 +284,33 @@
 				<xsl:value-of select="$extra-class" />
 			</xsl:if>
 		</xsl:attribute>
-	
-		<xsl:if test="string-length($label-text) != 0 or string-length($placeholder) != 0">
-			<label>
-				<xsl:if test="string-length($label-id) != 0">
-					<xsl:attribute name="for">
-						<xsl:value-of select="$label-id" />
-					</xsl:attribute>
-				</xsl:if>
-				
-				<div class="alex-form-field-icons">
-					<div class="alex-form-field-icons-checked">
-						<xsl:call-template name="alex-form-checked-icon" />
-					</div>
-					<div class="alex-form-field-icons-x">
-						<xsl:call-template name="alex-form-X-icon" />
-					</div>
-				</div>
-				
-				<span class="normal">
-					<xsl:choose>
-						<xsl:when test="string-length($label-text) != 0">
-							<xsl:value-of select="$label-text" />
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="$placeholder" />
-						</xsl:otherwise>
-					</xsl:choose>
-				</span>
-			</label>
+		
+		<xsl:if test="string-length($label-text) != 0">
+			<div class="alex-form-field-label alex-form-field-label-placeholder">
+				<label>
+					<xsl:if test="string-length($label-id) != 0">
+						<xsl:attribute name="for">
+							<xsl:value-of select="$label-id" />
+						</xsl:attribute>
+					</xsl:if>
+					
+					<span class="normal">
+						<xsl:value-of select="$label-text" />
+					</span>
+				</label>
+			</div>
 		</xsl:if>
+		
+		<div class="alex-form-field-label alex-form-field-label-error"></div>
+		
+		<div class="alex-form-field-icons">
+			<div class="alex-form-field-icons-checked">
+				<xsl:call-template name="alex-form-checked-icon" />
+			</div>
+			<div class="alex-form-field-icons-x">
+				<xsl:call-template name="alex-form-X-icon" />
+			</div>
+		</div>
 
 		<xsl:element name="{$element}" autocomplete="off">
 			<xsl:attribute name="class">
@@ -335,11 +329,11 @@
 				<xsl:value-of select="$name" />
 			</xsl:attribute>
 			
-			<xsl:if test="string-length($label-id) != 0">
+			<!--xsl:if test="string-length($label-id) != 0">
 				<xsl:attribute name="id">
 					<xsl:value-of select="$label-id" />
 				</xsl:attribute>
-			</xsl:if>
+			</xsl:if-->
 			
 			<xsl:if test="$disabled = 'Yes' or $disabled = 'disabled'">
 				<xsl:attribute name="disabled">
