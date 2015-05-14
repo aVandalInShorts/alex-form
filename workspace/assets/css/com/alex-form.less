@@ -248,19 +248,28 @@
 			.alex-form-btn-bg-slider {
 				background-color: @alex-form-red;
 			}
-		}
-		
-		.alex-form-btn-error-msg {
-			visibility: visible;
-			opacity: 1;
+			
+			.alex-form-btn-text-ctn {
+				#transform(translateY(-100%));
+			}
+			
+			.alex-form-btn-text-title {
+				opacity: 0;
+			}
 		}
 		
 		.alex-form-btn-text-title {
 			opacity: 0;
 		}
 		
-		.alex-form-btn-text-error {
+		.alex-form-btn-text-icon-inner.success {
+			opacity: 0!important;
+			visibility: hidden !important;
+		}
+		
+		.alex-form-btn-text-icon-inner.error, .alex-form-btn-error-msg {
 			opacity: 1!important;
+			visibility: visible !important;
 		}
 	}
 	
@@ -278,11 +287,6 @@
 			.alex-form-btn-text-title {
 				opacity: 0;
 			}
-		}
-		
-		.alex-form-btn-success-msg {
-			visibility: visible;
-			opacity: 1;
 		}
 	}
 	
@@ -349,7 +353,7 @@
 			right: 100%;
 			#wh;
 			background-color: @alex-form-button-success-color;
-			#transition(~'right @{duration-short} @{ease} 0, background-color @{duration-short} @{ease}');
+			#transition(~'right @{duration-short} @{ease} 0ms, background-color @{duration-short} @{ease}');
 		}
 		
 		.alex-form-btn-text-ctn {
@@ -381,32 +385,44 @@
 				#transition(~'color @{duration-short} @{ease}, opacity @{duration-short} @{ease}');
 			}
 			
-			.alex-form-btn-text-error {
-				font-size: @alex-form-button-font-size;
-				line-height: @alex-form-button-line-height;
-				text-transform: initial;
-				font-family: @alex-form-font-family;
-				font-weight:@alex-form-button-font-weight;
-				text-transform: @alex-form-button-text-transform;
-				#transition(~'color @{duration-short} @{ease}, opacity @{duration-short} @{ease}');
-				opacity: 0;
-				white-space: nowrap;
-			}
-			
 			.alex-form-btn-text-icon-ctn {
 				#absolute;
 				top: 100%;
 				left: 0;
 				#wh;
 				
-				svg {
+				.alex-form-btn-text-icon-inner {
 					#absolute;
 					top: 50%;
 					left: 50%;
 					#transform(translate(-50%, -50%));
+					color: @alex-form-button-font-color;
+					font-size: @alex-form-button-font-size;
+					line-height: @alex-form-button-line-height;
+					text-transform: initial;
+					font-family: @alex-form-font-family;
+					font-weight: @alex-form-font-weight;
+					text-transform: @alex-form-button-text-transform;
+					#transition(~'color @{duration-short} @{ease}, opacity @{duration-short} @{ease}');
+					white-space: nowrap;
+					opacity: 1;
+					visibility: visible;
 					
-					polyline {
-						stroke: @alex-form-white;
+					&.error {
+						opacity: 0;
+						visibility: hidden;
+						
+						svg {
+							#wh(21px);
+						}
+					}
+					
+					svg {
+						display: block;
+						
+						polyline {
+							stroke: @alex-form-white;
+						}
 					}
 				}
 			}

@@ -210,7 +210,7 @@
 			
 			
 			<div class="alex-form-btn-text-ctn">
-				<span class="alex-form-btn-text-title">
+				<div class="alex-form-btn-text-title">
 				
 					<xsl:choose>
 						<xsl:when test="exslt:object-type($text) = 'string'">
@@ -227,18 +227,32 @@
 						</xsl:otherwise>
 					</xsl:choose>
 				
-				</span>
-				
-				<xsl:if test="string-length($error-text) != 0">
-					<span class="alex-form-btn-text-error">
-						<xsl:value-of select="$error-text" />
-					</span>
-				</xsl:if>
+				</div>
 				
 				<xsl:if test="$type = 'submit'">
-					<span class="alex-form-btn-text-icon-ctn">
-						<xsl:call-template name="alex-form-checked-icon" />
-					</span>
+					<div class="alex-form-btn-text-icon-ctn">
+						<div class="alex-form-btn-text-icon-inner success">
+							<xsl:choose>
+								<xsl:when test="string-length($success-text) != 0">
+									<xsl:value-of select="$success-text" />
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:call-template name="alex-form-checked-icon" />
+								</xsl:otherwise>
+							</xsl:choose>
+						</div>
+						
+						<div class="alex-form-btn-text-icon-inner error">
+							<xsl:choose>
+								<xsl:when test="string-length($success-text) != 0">
+									<xsl:value-of select="$error-text" />
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:call-template name="alex-form-X-icon" />
+								</xsl:otherwise>
+							</xsl:choose>
+						</div>
+					</div>
 				</xsl:if>
 			</div>
 		</xsl:element>
