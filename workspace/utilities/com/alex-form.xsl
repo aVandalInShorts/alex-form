@@ -267,11 +267,12 @@
 	<!-- Pour les inputs mettre .small ou .big
 	     Pour un textarea, ça ne changera rien  -->
 	<xsl:param name="class" select="''" />
+	<xsl:param name="element-id" select="''" />
 	<xsl:param name="name" select="'THE_FIELDS_NAME'" />
 	<xsl:param name="placeholder" select="''" />
 	<xsl:param name="extra-class" select="''" />
 	<xsl:param name="label-text" select="$placeholder" />
-	<xsl:param name="label-id" select="''" />
+	<xsl:param name="label-id" select="$element-id" />
 	<xsl:param name="disabled" select="''" />
 	
 	<div>
@@ -343,11 +344,11 @@
 				<xsl:value-of select="$name" />
 			</xsl:attribute>
 			
-			<!--xsl:if test="string-length($label-id) != 0">
+			<xsl:if test="string-length($element-id) != 0">
 				<xsl:attribute name="id">
-					<xsl:value-of select="$label-id" />
+					<xsl:value-of select="$element-id" />
 				</xsl:attribute>
-			</xsl:if-->
+			</xsl:if>
 			
 			<xsl:if test="$disabled = 'Yes' or $disabled = 'disabled'">
 				<xsl:attribute name="disabled">
