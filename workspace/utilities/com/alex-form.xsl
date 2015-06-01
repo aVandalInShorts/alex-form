@@ -257,9 +257,61 @@
 			</div>
 		</xsl:element>
 	</div>
-	
-</xsl:template> 
+</xsl:template>
 
+<xsl:template name="alex-form-label-generator">
+	<xsl:param name="element" select="'input'" />
+	<xsl:param name="class" select="''" />
+	<xsl:param name="label-text" select="''" />
+	<xsl:param name="label-id" select="''" />
+	<xsl:param name="disabled" select="false()" />
+	
+	<xsl:attribute name="class">
+		<xsl:text>alex-form-field</xsl:text>
+		<xsl:text> </xsl:text>
+		<xsl:value-of select="$element" />
+		
+		<xsl:if test="string-length($class) != 0">
+			<xsl:text> </xsl:text>
+			<xsl:value-of select="$class" />
+		</xsl:if>
+		
+		<xsl:if test="$disabled = 'Yes' or $disabled = 'disabled' or $disabled = true()">
+			<xsl:text> disabled</xsl:text>
+		</xsl:if>
+		
+		<xsl:if test="string-length($label-text) != 0">
+			<xsl:text> has-label</xsl:text>
+		</xsl:if>
+	</xsl:attribute>
+	
+	<xsl:if test="string-length($label-text) != 0">
+		<div class="alex-form-field-label alex-form-field-label-placeholder">
+			<label>
+				<xsl:if test="string-length($label-id) != 0">
+					<xsl:attribute name="for">
+						<xsl:value-of select="$label-id" />
+					</xsl:attribute>
+				</xsl:if>
+				
+				<span class="normal">
+					<xsl:value-of select="$label-text" />
+				</span>
+			</label>
+		</div>
+	</xsl:if>
+	
+	<div class="alex-form-field-label alex-form-field-label-error"></div>
+	
+	<div class="alex-form-field-icons">
+		<div class="alex-form-field-icons-checked">
+			<xsl:call-template name="alex-form-checked-icon" />
+		</div>
+		<div class="alex-form-field-icons-x">
+			<xsl:call-template name="alex-form-X-icon" />
+		</div>
+	</div>
+</xsl:template>
 
 <xsl:template name="alex-form-field">
 	<xsl:param name="element" select="'input'" />
@@ -273,59 +325,16 @@
 	<xsl:param name="extra-class" select="''" />
 	<xsl:param name="label-text" select="$placeholder" />
 	<xsl:param name="label-id" select="$element-id" />
-	<xsl:param name="disabled" select="''" />
+	<xsl:param name="disabled" select="false()" />
 	
 	<div>
-		<xsl:attribute name="class">
-			<xsl:text>alex-form-field</xsl:text>
-			<xsl:text> </xsl:text>
-			<xsl:value-of select="$element" />
-			
-			<xsl:if test="string-length($class) != 0">
-				<xsl:text> </xsl:text>
-				<xsl:value-of select="$class" />
-			</xsl:if>
-			
-			<xsl:if test="$disabled = 'Yes' or $disabled = 'disabled'">
-				<xsl:text> disabled</xsl:text>
-			</xsl:if>
-			
-			<xsl:if test="string-length($label-text) != 0">
-				<xsl:text> has-label</xsl:text>
-			</xsl:if>
-			
-			<xsl:if test="string-length($extra-class) != 0">
-				<xsl:text> </xsl:text>
-				<xsl:value-of select="$extra-class" />
-			</xsl:if>
-		</xsl:attribute>
-		
-		<xsl:if test="string-length($label-text) != 0">
-			<div class="alex-form-field-label alex-form-field-label-placeholder">
-				<label>
-					<xsl:if test="string-length($label-id) != 0">
-						<xsl:attribute name="for">
-							<xsl:value-of select="$label-id" />
-						</xsl:attribute>
-					</xsl:if>
-					
-					<span class="normal">
-						<xsl:value-of select="$label-text" />
-					</span>
-				</label>
-			</div>
-		</xsl:if>
-		
-		<div class="alex-form-field-label alex-form-field-label-error"></div>
-		
-		<div class="alex-form-field-icons">
-			<div class="alex-form-field-icons-checked">
-				<xsl:call-template name="alex-form-checked-icon" />
-			</div>
-			<div class="alex-form-field-icons-x">
-				<xsl:call-template name="alex-form-X-icon" />
-			</div>
-		</div>
+		<xsl:call-template name="alex-form-label-generator">
+			<xsl:with-param name="element" select="$element" />
+			<xsl:with-param name="class" select="$class" />
+			<xsl:with-param name="label-text" select="$label-text" />
+			<xsl:with-param name="label-id" select="$label-id" />
+			<xsl:with-param name="disabled" select="$disabled" />
+		</xsl:call-template>
 
 		<xsl:element name="{$element}" autocomplete="off">
 			<xsl:attribute name="class">
@@ -357,6 +366,72 @@
 			</xsl:if>
 		</xsl:element>
 	</div>
+</xsl:template>
+
+<xsl:template name="alex-form-dropdown">
+	<xsl:param name="class" select="''" />
+	<xsl:param name="ctn-class" select="'small'" />
+	<xsl:param name="all-title" select="''" />
+	<xsl:param name="can-select-all" select="true()" />
+	<xsl:param name="items" />
+	<xsl:param name="name" select="''" />
+	<xsl:param name="element-id" select="''" />
+	<xsl:param name="label-text" select="''" />
+	<xsl:param name="disabled" select="false()" />
+	
+	<div>
+		<xsl:attribute name="class">
+			<xsl:text>alex-form-field-ctn</xsl:text>
+			
+			<xsl:if test="string-length($ctn-class) != 0">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="$ctn-class" />
+			</xsl:if>
+		</xsl:attribute>
+		
+		<div>
+			<xsl:call-template name="alex-form-label-generator">
+				<xsl:with-param name="element" select="'select'" />
+				<xsl:with-param name="class" select="$class" />
+				<xsl:with-param name="label-text" select="$label-text" />
+				<xsl:with-param name="disabled" select="$disabled" />
+			</xsl:call-template>
+		
+			<div class="alex-form-dropdown">
+				<button type="button" class="alex-form-select" tabindex="-1">
+					<span class="alex-form-select-placeholder">
+						<xsl:value-of select="$all-title" />
+					</span>
+					
+					<xsl:call-template name="alex-form-fleche-down" />
+				</button>
+				
+				<input type="hidden" name="{$name}" id="{$element-id}" class="{$class}" />
+				
+				<div class="alex-form-dropdown-popup">
+					<xsl:if test="$can-select-all = true()">
+						<button type="button" class="alex-form-dropdown-item all">
+							<span>
+								<xsl:value-of select="$all-title" />
+							</span>
+						</button>
+					</xsl:if>
+					<xsl:apply-templates select="$items" />
+				</div>
+			</div>
+		</div>
+	</div>
+</xsl:template>
+
+<xsl:template name="alex-form-dropdown-item">
+	<xsl:param name="title" select="''" />
+	<xsl:param name="handle" select="''" />
+	
+	<button type="button" class="alex-form-dropdown-item" data-value="{$handle}">
+		<span>
+			<xsl:value-of select="$title" />
+		</span>
+	</button>
 </xsl:template>
 
 <xsl:template name="alex-form-checked-icon">
