@@ -368,6 +368,72 @@
 	</div>
 </xsl:template>
 
+<xsl:template name="alex-form-dropdown">
+	<xsl:param name="class" select="''" />
+	<xsl:param name="ctn-class" select="'small'" />
+	<xsl:param name="all-title" select="''" />
+	<xsl:param name="can-select-all" select="true()" />
+	<xsl:param name="items" />
+	<xsl:param name="name" select="''" />
+	<xsl:param name="element-id" select="''" />
+	<xsl:param name="label-text" select="''" />
+	<xsl:param name="disabled" select="false()" />
+	
+	<div>
+		<xsl:attribute name="class">
+			<xsl:text>alex-form-field-ctn</xsl:text>
+			
+			<xsl:if test="string-length($ctn-class) != 0">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="$ctn-class" />
+			</xsl:if>
+		</xsl:attribute>
+		
+		<div>
+			<xsl:call-template name="alex-form-label-generator">
+				<xsl:with-param name="element" select="'select'" />
+				<xsl:with-param name="class" select="$class" />
+				<xsl:with-param name="label-text" select="$label-text" />
+				<xsl:with-param name="disabled" select="$disabled" />
+			</xsl:call-template>
+		
+			<div class="alex-form-dropdown">
+				<button type="button" class="alex-form-select" tabindex="-1">
+					<span class="alex-form-select-placeholder">
+						<xsl:value-of select="$all-title" />
+					</span>
+					
+					<xsl:call-template name="alex-form-fleche-down" />
+				</button>
+				
+				<input type="hidden" name="{$name}" id="{$element-id}" class="{$class}" />
+				
+				<div class="alex-form-dropdown-popup">
+					<xsl:if test="$can-select-all = true()">
+						<button type="button" class="alex-form-dropdown-item all">
+							<span>
+								<xsl:value-of select="$all-title" />
+							</span>
+						</button>
+					</xsl:if>
+					<xsl:apply-templates select="$items" />
+				</div>
+			</div>
+		</div>
+	</div>
+</xsl:template>
+
+<xsl:template name="alex-form-dropdown-item">
+	<xsl:param name="title" select="''" />
+	<xsl:param name="handle" select="''" />
+	
+	<button type="button" class="alex-form-dropdown-item" data-value="{$handle}">
+		<span>
+			<xsl:value-of select="$title" />
+		</span>
+	</button>
+</xsl:template>
+
 <xsl:template name="alex-form-checked-icon">
 	<svg class="alex-form-checked-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		 width="21.114px" height="17.601px" viewBox="0 0 21.114 17.601" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
