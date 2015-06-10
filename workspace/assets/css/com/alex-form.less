@@ -122,9 +122,10 @@
 	.alex-form-checkbox-micro {
 		#cursor-hand;
 		#ib(middle);
-		#wh(20px);
-		#border-radius(4px);
-		background-color: @alex-form-checkbox-outer-bgcolor;
+		height: @alex-form-checkbox-micro-height;
+		width: @alex-form-checkbox-micro-width;
+		#border-radius(@alex-form-checkbox-micro-border-radius);
+		background-color: @alex-form-checkbox-micro-bgcolor;
 		
 		.alex-form-checkbox-micro-inner-ctn {
 			#relative;
@@ -140,14 +141,15 @@
 			
 			svg {
 				#absolute;
-				top: 2px;
-				left: 2px;
-				#wh(10px);
+				top: @alex-form-checkbox-svg-top;
+				left: @alex-form-checkbox-svg-left;
+				width: @alex-form-checkbox-svg-width;
+				height: @alex-form-checkbox-svg-height;
 				opacity: 0;
 				#transition(opacity @duration-short @ease);
 				
 				polyline {
-					stroke: @alex-form-checkbox-check-color;
+					stroke: @alex-form-checkbox-svg-color;
 					stroke-width: 4;
 				}
 			}
