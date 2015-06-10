@@ -10,7 +10,7 @@
 <xsl:template name="alex-form-radio">
 	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
 	<xsl:param name="checked" />
-	<xsl:param name="extra-class" />
+	<xsl:param name="class" />
 	<xsl:param name="data-link" select="''" />
 	<xsl:param name="text" select="''" />
 	<xsl:param name="value" />
@@ -21,9 +21,9 @@
 			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
 				<xsl:text> checked</xsl:text>
 			</xsl:if>
-			<xsl:if test="string-length($extra-class) != 0">
+			<xsl:if test="string-length($class) != 0">
 				<xsl:text> </xsl:text>
-				<xsl:value-of select="$extra-class" />
+				<xsl:value-of select="$class" />
 			</xsl:if>
 		</xsl:attribute>
 		
@@ -63,7 +63,7 @@
 <xsl:template name="alex-form-checkbox">
 	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
 	<xsl:param name="checked" />
-	<xsl:param name="extra-class" />
+	<xsl:param name="class" />
 	<xsl:param name="text" select="''" />
 	
 	<div>
@@ -72,9 +72,9 @@
 			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
 				<xsl:text> checked</xsl:text>
 			</xsl:if>
-			<xsl:if test="string-length($extra-class) != 0">
+			<xsl:if test="string-length($class) != 0">
 				<xsl:text> </xsl:text>
-				<xsl:value-of select="$extra-class" />
+				<xsl:value-of select="$class" />
 			</xsl:if>
 		</xsl:attribute>
 	
@@ -119,7 +119,7 @@
 	<xsl:param name="success-text" />
 	<xsl:param name="error-text" />
 	<xsl:param name="url" />
-	<xsl:param name="extra-class" />
+	<xsl:param name="class" />
 	<xsl:param name="disabled" />
 	<xsl:param name="error-message" />
 	<xsl:param name="success-message" />
@@ -159,9 +159,9 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			
-			<xsl:if test="string-length($extra-class) != 0">
+			<xsl:if test="string-length($class) != 0">
 				<xsl:text> </xsl:text>
-				<xsl:value-of select="$extra-class" />
+				<xsl:value-of select="$class" />
 			</xsl:if>
 			
 			<xsl:if test="$disabled = 'Yes' or $disabled = 'disabled'">
@@ -324,7 +324,6 @@
 	<xsl:param name="element-id" select="''" />
 	<xsl:param name="name" select="'THE_FIELDS_NAME'" />
 	<xsl:param name="placeholder" select="''" />
-	<xsl:param name="extra-class" select="''" />
 	<xsl:param name="label-text" select="$placeholder" />
 	<xsl:param name="label-id" select="$element-id" />
 	<xsl:param name="disabled" select="false()" />
