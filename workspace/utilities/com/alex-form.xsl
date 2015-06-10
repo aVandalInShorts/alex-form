@@ -86,24 +86,26 @@
 			</div>
 		</div>
 		
-		<xsl:if test="string-length($text) != 0">
-			<label class="alex-form-checkbox-text">
-				<xsl:value-of select="$text" />
-			</label>
-		</xsl:if>
-		
-		<input type="checkbox" class="alex-form-checkbox">
-		
-			<xsl:attribute name="name">
-				<xsl:value-of select="$name" />
-			</xsl:attribute>
-			
-			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
-				<xsl:attribute name="checked">
-					<xsl:text>checked</xsl:text>
-				</xsl:attribute>
+		<div class="alex-form-checkbox-content">
+			<xsl:if test="string-length($text) != 0">
+				<label class="alex-form-checkbox-text">
+					<xsl:value-of select="$text" />
+				</label>
 			</xsl:if>
-		</input>
+			
+			<input type="checkbox" class="alex-form-checkbox">
+			
+				<xsl:attribute name="name">
+					<xsl:value-of select="$name" />
+				</xsl:attribute>
+				
+				<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
+					<xsl:attribute name="checked">
+						<xsl:text>checked</xsl:text>
+					</xsl:attribute>
+				</xsl:if>
+			</input>
+		</div>
 	</div>
 </xsl:template>
 
