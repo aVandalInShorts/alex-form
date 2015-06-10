@@ -65,6 +65,7 @@
 	<xsl:param name="checked" />
 	<xsl:param name="class" />
 	<xsl:param name="text" select="''" />
+	<xsl:param name="svg-check" select="'Yes'" />
 	
 	<div>
 		<xsl:attribute name="class">
@@ -81,7 +82,14 @@
 		<div class="alex-form-checkbox-micro">
 			<div class="alex-form-checkbox-micro-inner-ctn">
 				<span class="alex-form-checkbox-check-icon">
-					<xsl:call-template name="alex-form-checked-icon" />
+					<xsl:choose>
+						<xsl:when test="$svg-check = 'Yes'">
+							<xsl:call-template name="alex-form-checked-icon" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="alex-form-X-icon" />
+						</xsl:otherwise>
+					</xsl:choose>
 				</span>
 			</div>
 		</div>
