@@ -10,7 +10,7 @@
 <xsl:template name="alex-form-radio">
 	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
 	<xsl:param name="checked" />
-	<xsl:param name="extra-class" />
+	<xsl:param name="class" />
 	<xsl:param name="data-link" select="''" />
 	<xsl:param name="text" select="''" />
 	<xsl:param name="value" />
@@ -21,9 +21,9 @@
 			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
 				<xsl:text> checked</xsl:text>
 			</xsl:if>
-			<xsl:if test="string-length($extra-class) != 0">
+			<xsl:if test="string-length($class) != 0">
 				<xsl:text> </xsl:text>
-				<xsl:value-of select="$extra-class" />
+				<xsl:value-of select="$class" />
 			</xsl:if>
 		</xsl:attribute>
 		
@@ -63,8 +63,9 @@
 <xsl:template name="alex-form-checkbox">
 	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
 	<xsl:param name="checked" />
-	<xsl:param name="extra-class" />
+	<xsl:param name="class" />
 	<xsl:param name="text" select="''" />
+	<xsl:param name="svg-check" select="'Yes'" />
 	
 	<div>
 		<xsl:attribute name="class">
@@ -72,38 +73,47 @@
 			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
 				<xsl:text> checked</xsl:text>
 			</xsl:if>
-			<xsl:if test="string-length($extra-class) != 0">
+			<xsl:if test="string-length($class) != 0">
 				<xsl:text> </xsl:text>
-				<xsl:value-of select="$extra-class" />
+				<xsl:value-of select="$class" />
 			</xsl:if>
 		</xsl:attribute>
 	
 		<div class="alex-form-checkbox-micro">
 			<div class="alex-form-checkbox-micro-inner-ctn">
 				<span class="alex-form-checkbox-check-icon">
-					<xsl:call-template name="alex-form-checked-icon" />
+					<xsl:choose>
+						<xsl:when test="$svg-check = 'Yes'">
+							<xsl:call-template name="alex-form-checked-icon" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="alex-form-X-icon" />
+						</xsl:otherwise>
+					</xsl:choose>
 				</span>
 			</div>
 		</div>
 		
-		<xsl:if test="string-length($text) != 0">
-			<label class="alex-form-checkbox-text">
-				<xsl:value-of select="$text" />
-			</label>
-		</xsl:if>
-		
-		<input type="checkbox" class="alex-form-checkbox">
-		
-			<xsl:attribute name="name">
-				<xsl:value-of select="$name" />
-			</xsl:attribute>
-			
-			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
-				<xsl:attribute name="checked">
-					<xsl:text>checked</xsl:text>
-				</xsl:attribute>
+		<div class="alex-form-checkbox-content">
+			<xsl:if test="string-length($text) != 0">
+				<label class="alex-form-checkbox-text">
+					<xsl:value-of select="$text" />
+				</label>
 			</xsl:if>
-		</input>
+			
+			<input type="checkbox" class="alex-form-checkbox">
+			
+				<xsl:attribute name="name">
+					<xsl:value-of select="$name" />
+				</xsl:attribute>
+				
+				<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
+					<xsl:attribute name="checked">
+						<xsl:text>checked</xsl:text>
+					</xsl:attribute>
+				</xsl:if>
+			</input>
+		</div>
 	</div>
 </xsl:template>
 
@@ -117,7 +127,7 @@
 	<xsl:param name="success-text" />
 	<xsl:param name="error-text" />
 	<xsl:param name="url" />
-	<xsl:param name="extra-class" />
+	<xsl:param name="class" />
 	<xsl:param name="disabled" />
 	<xsl:param name="error-message" />
 	<xsl:param name="success-message" />
@@ -157,9 +167,9 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			
-			<xsl:if test="string-length($extra-class) != 0">
+			<xsl:if test="string-length($class) != 0">
 				<xsl:text> </xsl:text>
-				<xsl:value-of select="$extra-class" />
+				<xsl:value-of select="$class" />
 			</xsl:if>
 			
 			<xsl:if test="$disabled = 'Yes' or $disabled = 'disabled'">
@@ -322,7 +332,6 @@
 	<xsl:param name="element-id" select="''" />
 	<xsl:param name="name" select="'THE_FIELDS_NAME'" />
 	<xsl:param name="placeholder" select="''" />
-	<xsl:param name="extra-class" select="''" />
 	<xsl:param name="label-text" select="$placeholder" />
 	<xsl:param name="label-id" select="$element-id" />
 	<xsl:param name="disabled" select="false()" />

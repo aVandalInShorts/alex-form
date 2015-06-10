@@ -81,6 +81,9 @@
 }
 
 .alex-form-checkbox-ctn {
+	.flexbox;
+	.flex-flow-row-no-wrap;
+	.flex-align-items-center;
 	
 	html:not(.mobile) &:hover {
 		.alex-form-checkbox-micro {
@@ -104,15 +107,16 @@
 	}
 	
 	.alex-form-checkbox-text {
-		vertical-align: middle;
 		margin: 0;
 		padding: 0;
+		display: inline-block;
 		color: @alex-form-checkbox-label-color;
 		font-size: @alex-form-checkbox-label-font-size;
 		line-height: @alex-form-checkbox-label-line-height;
 		font-family: @alex-form-font-family;
-		margin-left: @alex-form-checkbox-label-margin-left;
+		padding-left: @alex-form-checkbox-label-margin-left;
 		#cursor-hand;
+		#box-sizing;
 		
 		&.error {
 			color: @alex-form-checkbox-error-color;
@@ -124,8 +128,15 @@
 		#ib(middle);
 		height: @alex-form-checkbox-micro-height;
 		width: @alex-form-checkbox-micro-width;
+		min-width: @alex-form-checkbox-micro-width;
 		#border-radius(@alex-form-checkbox-micro-border-radius);
 		background-color: @alex-form-checkbox-micro-bgcolor;
+		
+		#mq-max-width(@screen-xs, {
+			height: @alex-form-checkbox-mobile-micro-height;
+			width: @alex-form-checkbox-mobile-micro-width;
+			min-width: @alex-form-checkbox-mobile-micro-width;
+		});
 		
 		.alex-form-checkbox-micro-inner-ctn {
 			#relative;
@@ -134,6 +145,12 @@
 			margin: ((@alex-form-checkbox-micro-height - @alex-form-checkbox-inner-height) / 2) ((@alex-form-checkbox-micro-width - @alex-form-checkbox-inner-width) / 2);
 			#border-radius(@alex-form-checkbox-inner-border-radius);
 			background-color: @alex-form-checkbox-inner-bgcolor;
+			
+			#mq-max-width(@screen-xs, {
+				height: @alex-form-checkbox-mobile-inner-height;
+				width: @alex-form-checkbox-mobile-inner-width;
+				margin: ((@alex-form-checkbox-mobile-micro-height - @alex-form-checkbox-mobile-inner-height) / 2) ((@alex-form-checkbox-mobile-micro-width - @alex-form-checkbox-mobile-inner-width) / 2);
+			});
 		}
 		
 		.alex-form-checkbox-check-icon {
@@ -149,6 +166,13 @@
 				opacity: 0;
 				#transition(opacity @duration-short @ease);
 				
+				#mq-max-width(@screen-xs, {
+					top: @alex-form-checkbox-mobile-svg-top;
+					left: @alex-form-checkbox-mobile-svg-left;
+					width: @alex-form-checkbox-mobile-svg-width;
+					height: @alex-form-checkbox-mobile-svg-height;
+				});
+				
 				polyline {
 					stroke: @alex-form-checkbox-svg-color;
 					stroke-width: 4;
@@ -157,8 +181,14 @@
 		}
 	}
 	
+	.alex-form-checkbox-content {
+		width: 100%;
+	}
+	
 	.alex-form-checkbox {
 		visibility: hidden;
+		#wh(0);
+		margin: 0;
 	}
 }
 
