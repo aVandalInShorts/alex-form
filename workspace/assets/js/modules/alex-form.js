@@ -102,7 +102,7 @@
 	
 	var dropdownBlur = function (e) {
 		var target = $(e.target);
-		if (!target.closest(panel).length) {
+		if (!target.closest(dropsdownOptions.panel).length) {
 			dropdownHidePanel();
 		}
 	};
@@ -185,9 +185,7 @@
 		site.on('keyup', 'form input, form textarea', checkIfChar);
 		
 		site.on($.click, 'form ' + dropsdownOptions.btn, dropdownClick);
-		$(dropsdownOptions.ctn)
-			.find(dropsdownOptions.panel)
-			.find(dropsdownOptions.items).on($.click, dropdownSelect);
+		site.on($.click, dropsdownOptions.panel + ' ' + dropsdownOptions.items, dropdownSelect);
 	};
 	
 	var actions = function () {
