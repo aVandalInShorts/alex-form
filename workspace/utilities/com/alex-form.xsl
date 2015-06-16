@@ -332,11 +332,28 @@
 	<xsl:param name="element-id" select="''" />
 	<xsl:param name="name" select="'THE_FIELDS_NAME'" />
 	<xsl:param name="placeholder" select="''" />
+	<xsl:param name="ctn-class" select="''" />
 	<xsl:param name="label-text" select="$placeholder" />
 	<xsl:param name="label-id" select="$element-id" />
 	<xsl:param name="disabled" select="false()" />
 	
 	<div>
+		<xsl:attribute name="class">
+			<xsl:text>alex-form-field-ctn</xsl:text>
+			
+			<xsl:if test="string-length($ctn-class) != 0">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="$ctn-class" />
+			</xsl:if>
+		</xsl:attribute>
+				
+		<xsl:call-template name="ie-cc">
+			<xsl:with-param name="content">
+				<label><xsl:value-of select="$label-text" /></label>
+			</xsl:with-param>
+			<xsl:with-param name="condition" select="'lte IE 9'" />
+		</xsl:call-template>
+		
 		<xsl:call-template name="alex-form-label-generator">
 			<xsl:with-param name="element" select="$element" />
 			<xsl:with-param name="class" select="$class" />
@@ -398,6 +415,13 @@
 			</xsl:if>
 		</xsl:attribute>
 		
+		<xsl:call-template name="ie-cc">
+			<xsl:with-param name="content">
+				<label><xsl:value-of select="$label-text" /></label>
+			</xsl:with-param>
+			<xsl:with-param name="condition" select="'lte IE 9'" />
+		</xsl:call-template>
+		
 		<div>
 			<xsl:call-template name="alex-form-label-generator">
 				<xsl:with-param name="element" select="'select'" />
@@ -456,6 +480,15 @@
 		<polyline class="alex-form-X" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="11.665,0.958 6.185,6.417 0.664,0.979 "/>
 		<polyline class="alex-form-X" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="0.706,11.875 6.185,6.417 11.706,11.854"/>
 	</svg>
+</xsl:template>
+
+<xsl:template name="ie-cc">
+	<xsl:param name="content" />
+	<xsl:param name="condition" select="'IE'" />
+	
+	<xsl:text disable-output-escaping="yes">&lt;</xsl:text>!--[if <xsl:value-of select="$condition" />]<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+	<xsl:copy-of select="exsl:node-set($content)/*" />
+	<xsl:text disable-output-escaping="yes">&lt;</xsl:text>![endif]--<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
