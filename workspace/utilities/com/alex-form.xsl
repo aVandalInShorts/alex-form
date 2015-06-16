@@ -338,28 +338,19 @@
 	<xsl:param name="disabled" select="false()" />
 	
 	<div>
-		<xsl:attribute name="class">
-			<xsl:text>alex-form-field-ctn</xsl:text>
-			
-			<xsl:if test="string-length($ctn-class) != 0">
-				<xsl:text> </xsl:text>
-				<xsl:value-of select="$ctn-class" />
-			</xsl:if>
-		</xsl:attribute>
-				
-		<xsl:call-template name="ie-cc">
-			<xsl:with-param name="content">
-				<label><xsl:value-of select="$label-text" /></label>
-			</xsl:with-param>
-			<xsl:with-param name="condition" select="'lte IE 9'" />
-		</xsl:call-template>
-		
 		<xsl:call-template name="alex-form-label-generator">
 			<xsl:with-param name="element" select="$element" />
 			<xsl:with-param name="class" select="$class" />
 			<xsl:with-param name="label-text" select="$label-text" />
 			<xsl:with-param name="label-id" select="$label-id" />
 			<xsl:with-param name="disabled" select="$disabled" />
+		</xsl:call-template>
+		
+		<xsl:call-template name="ie-cc">
+			<xsl:with-param name="content">
+				<label><xsl:value-of select="$label-text" /></label>
+			</xsl:with-param>
+			<xsl:with-param name="condition" select="'lte IE 9'" />
 		</xsl:call-template>
 
 		<xsl:element name="{$element}" autocomplete="off">
