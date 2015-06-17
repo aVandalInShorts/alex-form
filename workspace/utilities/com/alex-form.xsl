@@ -14,6 +14,7 @@
 	<xsl:param name="data-link" select="''" />
 	<xsl:param name="text" select="''" />
 	<xsl:param name="value" />
+	<xsl:param name="inverted" select="false()" />
 	
 	<div>
 		<xsl:attribute name="class">
@@ -25,6 +26,9 @@
 				<xsl:text> </xsl:text>
 				<xsl:value-of select="$class" />
 			</xsl:if>
+			<xsl:if test="$inverted = true()">
+				<xsl:text> inverted</xsl:text>
+			</xsl:if>
 		</xsl:attribute>
 		
 		<xsl:if test="string-length($data-link) != 0">
@@ -33,20 +37,21 @@
 			</xsl:attribute>
 		</xsl:if>
 	
-		<div class="alex-form-radio-micro">
-			<div class="alex-form-radio-micro-inner-ctn">
-				<span class="alex-form-radio-circle"></span>
-			</div>
-		</div>
-		
+		<xsl:if test="$inverted = false()">
+			<xsl:call-template name="alex-form-radio-micro" />
+		</xsl:if>
+			
 		<xsl:if test="string-length($text) != 0">
 			<label class="alex-form-radio-text">
 				<xsl:value-of select="$text" />
 			</label>
 		</xsl:if>
+			
+		<xsl:if test="$inverted = true()">
+			<xsl:call-template name="alex-form-radio-micro" />
+		</xsl:if>
 		
 		<input type="radio" class="alex-form-radio" value="{$value}">
-		
 			<xsl:attribute name="name">
 				<xsl:value-of select="$name" />
 			</xsl:attribute>
@@ -60,12 +65,21 @@
 	</div>
 </xsl:template>
 
+<xsl:template name="alex-form-radio-micro">
+	<div class="alex-form-radio-micro">
+		<div class="alex-form-radio-micro-inner-ctn">
+			<span class="alex-form-radio-circle"></span>
+		</div>
+	</div>
+</xsl:template>
+
 <xsl:template name="alex-form-checkbox">
 	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
 	<xsl:param name="checked" />
 	<xsl:param name="class" />
 	<xsl:param name="text" select="''" />
 	<xsl:param name="svg-check" select="'Yes'" />
+	<xsl:param name="inverted" select="false()" />
 	
 	<div>
 		<xsl:attribute name="class">
@@ -78,21 +92,13 @@
 				<xsl:value-of select="$class" />
 			</xsl:if>
 		</xsl:attribute>
-	
-		<div class="alex-form-checkbox-micro">
-			<div class="alex-form-checkbox-micro-inner-ctn">
-				<span class="alex-form-checkbox-check-icon">
-					<xsl:choose>
-						<xsl:when test="$svg-check = 'Yes'">
-							<xsl:call-template name="alex-form-checked-icon" />
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:call-template name="alex-form-X-icon" />
-						</xsl:otherwise>
-					</xsl:choose>
-				</span>
-			</div>
-		</div>
+		
+		
+		<xsl:if test="$inverted = false()">
+			<xsl:call-template name="alex-form-checkbox-micro">
+				<xsl:with-param name="svg-check" select="$svg-check" />
+			</xsl:call-template>
+		</xsl:if>
 		
 		<div class="alex-form-checkbox-content">
 			<xsl:if test="string-length($text) != 0">
@@ -102,7 +108,6 @@
 			</xsl:if>
 			
 			<input type="checkbox" class="alex-form-checkbox">
-			
 				<xsl:attribute name="name">
 					<xsl:value-of select="$name" />
 				</xsl:attribute>
@@ -113,6 +118,31 @@
 					</xsl:attribute>
 				</xsl:if>
 			</input>
+		</div>
+		
+		<xsl:if test="$inverted = true()">
+			<xsl:call-template name="alex-form-checkbox-micro">
+				<xsl:with-param name="svg-check" select="$svg-check" />
+			</xsl:call-template>
+		</xsl:if>
+	</div>
+</xsl:template>
+
+<xsl:template name="alex-form-checkbox-micro">
+	<xsl:variable name="svg-check" select="''" />
+	
+	<div class="alex-form-checkbox-micro">
+		<div class="alex-form-checkbox-micro-inner-ctn">
+			<span class="alex-form-checkbox-check-icon">
+				<xsl:choose>
+					<xsl:when test="$svg-check = 'Yes'">
+						<xsl:call-template name="alex-form-checked-icon" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="alex-form-X-icon" />
+					</xsl:otherwise>
+				</xsl:choose>
+			</span>
 		</div>
 	</div>
 </xsl:template>
