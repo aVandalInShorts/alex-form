@@ -458,6 +458,13 @@
 	</button>
 </xsl:template>
 
+<xsl:template name="alex-form-fleche-down">
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="90px" height="50px" viewBox="0 0 90 50" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
+		<polyline fill="none" stroke="#FFFFFF" stroke-width="19" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="15.5,10 45,39.5 45,39.5 75,10 "/>
+	</svg>
+</xsl:template>
+
 <xsl:template name="alex-form-checked-icon">
 	<svg class="alex-form-checked-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		 width="21.114px" height="17.601px" viewBox="0 0 21.114 17.601" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
