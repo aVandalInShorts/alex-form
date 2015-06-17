@@ -51,6 +51,13 @@
 		background-color: @alex-form-radio-outer-bgcolor;
 		#transition(background-color @duration-short @ease);
 		
+		#mq-max-width(@screen-xs, {
+			height: @alex-form-radio-mobile-micro-height;
+			width: @alex-form-radio-mobile-micro-width;
+			min-width: @alex-form-radio-mobile-micro-width;
+			#border-radius(@alex-form-radio-mobile-micro-border-radius);
+		});
+		
 		.alex-form-radio-micro-inner-ctn {
 			#relative;
 			height: @alex-form-radio-inner-height;
@@ -58,6 +65,13 @@
 			margin: @alex-form-radio-inner-margin;
 			#border-radius(@alex-form-radio-inner-border-radius);
 			background-color: @alex-form-radio-inner-bgcolor;
+			
+			#mq-max-width(@screen-xs, {
+				height: @alex-form-radio-mobile-inner-height;
+				width: @alex-form-radio-mobile-inner-width;
+				margin: @alex-form-radio-mobile-inner-margin;
+				#border-radius(@alex-form-radio-mobile-inner-border-radius);
+			});
 		}
 		
 		.alex-form-radio-circle {
@@ -70,6 +84,11 @@
 			background-color: @alex-form-radio-circle-color;
 			opacity: 0;
 			#transition(opacity @duration-shorter @ease);
+			
+			#mq-max-width(@screen-xs, {
+				margin: @alex-form-radio-mobile-circle-margin;
+				#wh(@alex-form-radio-mobile-circle-width-height);
+			});
 		}
 	}
 	
