@@ -3,6 +3,9 @@
  **/
 
 .alex-form-radio-ctn {
+	.flexbox;
+	.flex-flow-row-no-wrap;
+	.flex-align-items-center;
 	#cursor-hand;
 	
 	html:not(.mobile) &:hover {
@@ -41,16 +44,19 @@
 	.alex-form-radio-micro {
 		#cursor-hand;
 		#ib(middle);
-		#wh(20px);
-		#border-radius(4px);
+		height: @alex-form-radio-micro-height;
+		width: @alex-form-radio-micro-width;
+		min-width: @alex-form-radio-micro-width;
+		#border-radius(@alex-form-radio-micro-border-radius);
 		background-color: @alex-form-radio-outer-bgcolor;
 		#transition(background-color @duration-short @ease);
 		
 		.alex-form-radio-micro-inner-ctn {
 			#relative;
-			#wh(14px);
-			margin: 3px;
-			#border-radius(3px);
+			height: @alex-form-radio-inner-height;
+			width: @alex-form-radio-inner-width;
+			margin: @alex-form-radio-inner-margin;
+			#border-radius(@alex-form-radio-inner-border-radius);
 			background-color: @alex-form-radio-inner-bgcolor;
 		}
 		
@@ -58,9 +64,9 @@
 			#absolute;
 			top: 50%;
 			left: 50%;
-			margin: -4px 0 0 -4px;
-			#wh(8px);
-			#border-radius(100%);
+			margin: @alex-form-radio-circle-margin;
+			#wh(@alex-form-radio-circle-width-height);
+			#border-radius(@alex-form-radio-circle-border-radius);
 			background-color: @alex-form-radio-circle-color;
 			opacity: 0;
 			#transition(opacity @duration-shorter @ease);
