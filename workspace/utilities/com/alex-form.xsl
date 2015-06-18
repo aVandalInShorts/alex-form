@@ -346,16 +346,20 @@
 		</div>
 	</xsl:if>
 	
-	<div class="alex-form-field-label alex-form-field-label-error"></div>
+	<xsl:if test="$with-error-label = true()">
+		<div class="alex-form-field-label alex-form-field-label-error"></div>
+	</xsl:if>
 	
-	<div class="alex-form-field-icons">
-		<div class="alex-form-field-icons-checked">
-			<xsl:call-template name="alex-form-checked-icon" />
+	<xsl:if test="$with-icons = true()">
+		<div class="alex-form-field-icons">
+			<div class="alex-form-field-icons-checked">
+				<xsl:call-template name="alex-form-checked-icon" />
+			</div>
+			<div class="alex-form-field-icons-x">
+				<xsl:call-template name="alex-form-X-icon" />
+			</div>
 		</div>
-		<div class="alex-form-field-icons-x">
-			<xsl:call-template name="alex-form-X-icon" />
-		</div>
-	</div>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template name="alex-form-field">
