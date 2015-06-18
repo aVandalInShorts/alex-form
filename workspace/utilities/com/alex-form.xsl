@@ -308,6 +308,8 @@
 	<xsl:param name="label-text" select="''" />
 	<xsl:param name="label-id" select="''" />
 	<xsl:param name="disabled" select="false()" />
+	<xsl:param name="with-error-label" select="false()" />
+	<xsl:param name="with-icons" select="false()" />
 	
 	<xsl:attribute name="class">
 		<xsl:text>alex-form-field</xsl:text>
@@ -451,6 +453,8 @@
 				<xsl:with-param name="class" select="$class" />
 				<xsl:with-param name="label-text" select="$label-text" />
 				<xsl:with-param name="disabled" select="$disabled" />
+				<xsl:with-param name="with-error-label" select="false()" />
+				<xsl:with-param name="with-icons" select="false()" />
 			</xsl:call-template>
 		
 			<div class="alex-form-dropdown">
