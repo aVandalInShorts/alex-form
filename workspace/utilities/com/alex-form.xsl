@@ -91,6 +91,9 @@
 				<xsl:text> </xsl:text>
 				<xsl:value-of select="$class" />
 			</xsl:if>
+			<xsl:if test="$inverted = true()">
+				<xsl:text> inverted</xsl:text>
+			</xsl:if>
 		</xsl:attribute>
 		
 		
@@ -305,6 +308,8 @@
 	<xsl:param name="label-text" select="''" />
 	<xsl:param name="label-id" select="''" />
 	<xsl:param name="disabled" select="false()" />
+	<xsl:param name="with-error-label" select="false()" />
+	<xsl:param name="with-icons" select="false()" />
 	
 	<xsl:attribute name="class">
 		<xsl:text>alex-form-field</xsl:text>
@@ -341,16 +346,20 @@
 		</div>
 	</xsl:if>
 	
-	<div class="alex-form-field-label alex-form-field-label-error"></div>
+	<xsl:if test="$with-error-label = true()">
+		<div class="alex-form-field-label alex-form-field-label-error"></div>
+	</xsl:if>
 	
-	<div class="alex-form-field-icons">
-		<div class="alex-form-field-icons-checked">
-			<xsl:call-template name="alex-form-checked-icon" />
+	<xsl:if test="$with-icons = true()">
+		<div class="alex-form-field-icons">
+			<div class="alex-form-field-icons-checked">
+				<xsl:call-template name="alex-form-checked-icon" />
+			</div>
+			<div class="alex-form-field-icons-x">
+				<xsl:call-template name="alex-form-X-icon" />
+			</div>
 		</div>
-		<div class="alex-form-field-icons-x">
-			<xsl:call-template name="alex-form-X-icon" />
-		</div>
-	</div>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template name="alex-form-field">
@@ -362,7 +371,6 @@
 	<xsl:param name="element-id" select="''" />
 	<xsl:param name="name" select="'THE_FIELDS_NAME'" />
 	<xsl:param name="placeholder" select="''" />
-	<xsl:param name="ctn-class" select="''" />
 	<xsl:param name="label-text" select="$placeholder" />
 	<xsl:param name="label-id" select="$element-id" />
 	<xsl:param name="disabled" select="false()" />
@@ -417,7 +425,7 @@
 
 <xsl:template name="alex-form-dropdown">
 	<xsl:param name="class" select="''" />
-	<xsl:param name="ctn-class" select="'small'" />
+	<xsl:param name="ctn-class" select="''" />
 	<xsl:param name="all-title" select="''" />
 	<xsl:param name="can-select-all" select="true()" />
 	<xsl:param name="items" />
@@ -449,6 +457,8 @@
 				<xsl:with-param name="class" select="$class" />
 				<xsl:with-param name="label-text" select="$label-text" />
 				<xsl:with-param name="disabled" select="$disabled" />
+				<xsl:with-param name="with-error-label" select="false()" />
+				<xsl:with-param name="with-icons" select="false()" />
 			</xsl:call-template>
 		
 			<div class="alex-form-dropdown">
@@ -457,7 +467,9 @@
 						<xsl:value-of select="$all-title" />
 					</span>
 					
-					<xsl:call-template name="alex-form-fleche-down" />
+					<span class="alex-form-select-svg-ctn">
+						<xsl:call-template name="alex-form-fleche-down" />
+					</span>
 				</button>
 				
 				<input type="hidden" name="{$name}" id="{$element-id}" class="{$class}" />
