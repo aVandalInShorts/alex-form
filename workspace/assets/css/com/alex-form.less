@@ -865,13 +865,14 @@
 .alex-form-dropdown {
 	#absolute(20);
 	#fill();
+	.flexbox;
+	.flex-center;
 }
 
 .alex-form-select, .alex-form-select-dropdown button {
 	font-family: @alex-form-font-family;
 	font-size: @alex-form-dropdown-font-size;
 	line-height: @alex-form-dropdown-line-height;
-	color: @alex-form-dropdown-font-color;
 	width: 100%;
 	padding: 1.6rem;
 	#box-sizing;
@@ -896,13 +897,11 @@
 	font-size: @alex-form-field-font-size;
 	line-height: @alex-form-field-line-height;
 	font-family: @alex-form-font-family;
-	#absolute(50);
-	top: 50%;
-	left: 0;
-	#transform(translateY(-50%));
 	#cb-transition(~'transform @{duration-short} @{ease}, top @{duration-short} @{ease}');
 	
 	.alex-form-select-svg-ctn {
+		.flexbox;
+		.flex-center;
 		position: @alex-form-dropdown-svg-ctn-position;
 		z-index: @alex-form-dropdown-svg-ctn-z-index;
 		top: @alex-form-dropdown-svg-ctn-top;
@@ -913,10 +912,6 @@
 		background-color: @alex-form-dropdown-svg-ctn-background-color;
 		
 		svg {
-			position: @alex-form-dropdown-svg-position;
-			display: block;
-			top: @alex-form-dropdown-svg-top;
-			left: @alex-form-dropdown-svg-left;
 			width: @alex-form-dropdown-svg-width;
 			height: @alex-form-dropdown-svg-height;
 			margin: @alex-form-dropdown-svg-margin;
@@ -924,7 +919,8 @@
 			polyline {
 				stroke-linecap: initial;
 				stroke-linejoin: inherit;
-				stroke: @alex-form-dropdown-font-color;
+				stroke-width: @alex-form-dropdown-svg-stroke-width;
+				stroke: @alex-form-dropdown-svg-stroke-color;
 			}
 		}
 	}
@@ -937,8 +933,9 @@
 	.alex-form-select-placeholder {
 		font-size: @alex-form-field-placeholder-font-size;
 		line-height: (@alex-form-field-placeholder-line-height * 1.4);
-		color: @alex-form-field-placeholder-color;
-		padding-top: 0.5rem;
+		color: @alex-form-dropdown-placeholder-color;
+		font-weight: @alex-form-field-placeholder-font-weight;
+		padding-top: @alex-form-dropdown-placeholder-padding-top;
 	}
 }
 
@@ -971,18 +968,19 @@
 	&.quit {
 		#cb-transition(~'@{transition}, @{visanim} @{duration-short}');
 	}
-	
 }
 
 .alex-form-dropdown-item {
 	width: 100%;
 	display: block;
+	color: @alex-form-dropdown-item-color;
 	font-size: @alex-form-dropdown-font-size;
 	line-height: @alex-form-dropdown-line-height;
+	font-weight: @alex-form-field-placeholder-font-weight;
 	text-align: left;
 	#cursor-hand;
 	margin: 0;
-	padding: 1.6rem;
+	padding: @alex-form-dropdown-item-padding;
 	background-color: @alex-form-dropdown-bgcolor;
 	#transition(~'color @{duration-short} @{ease-out}, background-color @{duration-short} @{ease-out}');
 	min-height: @alex-form-dropdown-item-min-height;
@@ -990,10 +988,10 @@
 	html:not(.mobile) &:hover {
 		#transition(~'color @{duration-short} @{ease-in}, background-color @{duration-short} @{ease-in}');
 		background-color: @alex-form-dropdown-hover-background-color;
-		color: @alex-form-dropdown-hover-font-color;
+		color: @alex-form-dropdown-item-color-hover;
 	}
 	
 	&.all {
-		padding-top: 1.4rem;
+		padding-top: @alex-form-dropdown-item-all-padding-top;
 	}
 }
