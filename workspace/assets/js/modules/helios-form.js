@@ -9,12 +9,12 @@
 	'use strict';
 	var win = $(window);
 	var site = $('#site');
-	var containerClass = '.alex-form-field-ctn';
+	var containerClass = '.helios-form-field-ctn';
 	
 	var dropsdownOptions = {
-		ctn: '.alex-form-dropdown',
-		btn: 'button.alex-form-select',
-		panel: '.alex-form-dropdown-popup',
+		ctn: '.helios-form-dropdown',
+		btn: 'button.helios-form-select',
+		panel: '.helios-form-dropdown-popup',
 		items: 'button',
 		selectedClass: 'selected',
 		showClass: 'show',
@@ -120,24 +120,24 @@
 	
 	var onFocusOut = function (e) {
 		var t = $(this);
-		t.closest('.alex-form-field').removeClass('gotFocus');
+		t.closest('.helios-form-field').removeClass('gotFocus');
 	};
 	
 	var onFocusIn = function (e) {
 		var t = $(this);
-		t.closest('.alex-form-field').addClass('gotFocus');
+		t.closest('.helios-form-field').addClass('gotFocus');
 	};
 	
 	var checkIfChar = function (e) {
 		var t = $(this);
 		var fx = t.val() !== '' ? 'addClass' : 'removeClass';
 			
-		t.closest('.alex-form-field')[fx]('hasChar');
+		t.closest('.helios-form-field')[fx]('hasChar');
 	};
 	
 	var checkOnClickRadio = function (e) {
 		var t = $(this);
-		var ctn = t.closest('.alex-form-radio-ctn');
+		var ctn = t.closest('.helios-form-radio-ctn');
 		var localRadioBox = $('input[type=radio]', ctn);
 		
 		var localName = localRadioBox.attr('name');
@@ -145,19 +145,19 @@
 		
 		foreignRadio
 			.removeAttr('checked')
-			.closest('.alex-form-radio-ctn')
+			.closest('.helios-form-radio-ctn')
 			.removeClass('checked');
 		
 		localRadioBox.prop('checked', true).attr('checked', 'checked');
 		
 		ctn.addClass('checked');
-		App.mediator.notifyCurrentPage('alexForm.radioClicked');
+		App.mediator.notifyCurrentPage('heliosForm.radioClicked');
 		
 	};
 	
 	var checkOnClickCheckbox = function (e) {
 		var t = $(this);
-		var ctn = t.closest('.alex-form-checkbox-ctn');
+		var ctn = t.closest('.helios-form-checkbox-ctn');
 		var chkBox = $('input[type=checkbox]', ctn);
 		var fx = ctn.hasClass('checked') ? 'removeClass' : 'addClass';
 		var fx2 = ctn.hasClass('checked') ? 'removeAttr' : 'attr';
@@ -174,9 +174,9 @@
 	
 	/*********************** INIT */
 	var init = function () {
-		site.on($.click, 'form .alex-form-checkbox-micro', checkOnClickCheckbox);
-		site.on($.click, 'form .alex-form-checkbox-text', checkOnClickCheckbox);
-		site.on($.click, 'form .alex-form-radio-ctn', checkOnClickRadio);
+		site.on($.click, 'form .helios-form-checkbox-micro', checkOnClickCheckbox);
+		site.on($.click, 'form .helios-form-checkbox-text', checkOnClickCheckbox);
+		site.on($.click, 'form .helios-form-radio-ctn', checkOnClickRadio);
 		site.on($.click, 'form ' + containerClass, focusInput);
 		site.on($.click, dropdownClose);
 		

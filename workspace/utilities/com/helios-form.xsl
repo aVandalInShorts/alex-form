@@ -7,7 +7,7 @@
 
 <!-- Page template pour les compasantes de formulaire à Alex -->
 
-<xsl:template name="alex-form-radio">
+<xsl:template name="helios-form-radio">
 	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
 	<xsl:param name="checked" />
 	<xsl:param name="class" />
@@ -18,7 +18,7 @@
 	
 	<div>
 		<xsl:attribute name="class">
-			<xsl:text>alex-form-radio-ctn</xsl:text>
+			<xsl:text>helios-form-radio-ctn</xsl:text>
 			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
 				<xsl:text> checked</xsl:text>
 			</xsl:if>
@@ -38,20 +38,20 @@
 		</xsl:if>
 	
 		<xsl:if test="$inverted = false()">
-			<xsl:call-template name="alex-form-radio-micro" />
+			<xsl:call-template name="helios-form-radio-micro" />
 		</xsl:if>
 			
 		<xsl:if test="string-length($text) != 0">
-			<label class="alex-form-radio-text">
+			<label class="helios-form-radio-text">
 				<xsl:value-of select="$text" />
 			</label>
 		</xsl:if>
 			
 		<xsl:if test="$inverted = true()">
-			<xsl:call-template name="alex-form-radio-micro" />
+			<xsl:call-template name="helios-form-radio-micro" />
 		</xsl:if>
 		
-		<input type="radio" class="alex-form-radio" value="{$value}">
+		<input type="radio" class="helios-form-radio" value="{$value}">
 			<xsl:attribute name="name">
 				<xsl:value-of select="$name" />
 			</xsl:attribute>
@@ -65,15 +65,15 @@
 	</div>
 </xsl:template>
 
-<xsl:template name="alex-form-radio-micro">
-	<div class="alex-form-radio-micro">
-		<div class="alex-form-radio-micro-inner-ctn">
-			<span class="alex-form-radio-circle"></span>
+<xsl:template name="helios-form-radio-micro">
+	<div class="helios-form-radio-micro">
+		<div class="helios-form-radio-micro-inner-ctn">
+			<span class="helios-form-radio-circle"></span>
 		</div>
 	</div>
 </xsl:template>
 
-<xsl:template name="alex-form-checkbox">
+<xsl:template name="helios-form-checkbox">
 	<xsl:param name="name" select="'THE_FIELDS_NAME'"/>
 	<xsl:param name="checked" />
 	<xsl:param name="class" />
@@ -83,7 +83,7 @@
 	
 	<div>
 		<xsl:attribute name="class">
-			<xsl:text>alex-form-checkbox-ctn</xsl:text>
+			<xsl:text>helios-form-checkbox-ctn</xsl:text>
 			<xsl:if test="$checked = 'Yes' or $checked = 'checked'">
 				<xsl:text> checked</xsl:text>
 			</xsl:if>
@@ -98,19 +98,19 @@
 		
 		
 		<xsl:if test="$inverted = false()">
-			<xsl:call-template name="alex-form-checkbox-micro">
+			<xsl:call-template name="helios-form-checkbox-micro">
 				<xsl:with-param name="svg-check" select="$svg-check" />
 			</xsl:call-template>
 		</xsl:if>
 		
-		<div class="alex-form-checkbox-content">
+		<div class="helios-form-checkbox-content">
 			<xsl:if test="string-length($text) != 0">
-				<label class="alex-form-checkbox-text">
+				<label class="helios-form-checkbox-text">
 					<xsl:value-of select="$text" />
 				</label>
 			</xsl:if>
 			
-			<input type="checkbox" class="alex-form-checkbox">
+			<input type="checkbox" class="helios-form-checkbox">
 				<xsl:attribute name="name">
 					<xsl:value-of select="$name" />
 				</xsl:attribute>
@@ -124,25 +124,25 @@
 		</div>
 		
 		<xsl:if test="$inverted = true()">
-			<xsl:call-template name="alex-form-checkbox-micro">
+			<xsl:call-template name="helios-form-checkbox-micro">
 				<xsl:with-param name="svg-check" select="$svg-check" />
 			</xsl:call-template>
 		</xsl:if>
 	</div>
 </xsl:template>
 
-<xsl:template name="alex-form-checkbox-micro">
+<xsl:template name="helios-form-checkbox-micro">
 	<xsl:variable name="svg-check" select="''" />
 	
-	<div class="alex-form-checkbox-micro">
-		<div class="alex-form-checkbox-micro-inner-ctn">
-			<span class="alex-form-checkbox-check-icon">
+	<div class="helios-form-checkbox-micro">
+		<div class="helios-form-checkbox-micro-inner-ctn">
+			<span class="helios-form-checkbox-check-icon">
 				<xsl:choose>
 					<xsl:when test="$svg-check = 'Yes'">
-						<xsl:call-template name="alex-form-checked-icon" />
+						<xsl:call-template name="helios-form-checked-icon" />
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:call-template name="alex-form-X-icon" />
+						<xsl:call-template name="helios-form-X-icon" />
 					</xsl:otherwise>
 				</xsl:choose>
 			</span>
@@ -150,7 +150,7 @@
 	</div>
 </xsl:template>
 
-<xsl:template name="alex-form-btn">
+<xsl:template name="helios-form-btn">
 	<!-- Si le parametre type est a 'submit', c'est un btn pour soumettre
 		 Si le parametre type est à 'button', c'est un button type='button'
 		 Si le parametre type est à 'a', c'est un <a>  -->
@@ -181,9 +181,9 @@
 	
 	<div>
 		<xsl:attribute name="class">
-			<xsl:text>alex-form-btn-ctn</xsl:text>
+			<xsl:text>helios-form-btn-ctn</xsl:text>
 			
-			<xsl:text> alex-form-btn-message-</xsl:text>
+			<xsl:text> helios-form-btn-message-</xsl:text>
 			
 			<xsl:choose>
 				<xsl:when test="$message-position = 'top'">
@@ -211,13 +211,13 @@
 		</xsl:attribute>
 		
 		<xsl:if test="string-length($success-message) != 0">
-			<span class="alex-form-btn-success-msg">
+			<span class="helios-form-btn-success-msg">
 				<xsl:value-of select="$success-message" />
 			</span>
 		</xsl:if>
 		
 		<xsl:if test="string-length($error-message) != 0">
-			<span class="alex-form-btn-error-msg">
+			<span class="helios-form-btn-error-msg">
 				<xsl:value-of select="$error-message" />
 			</span>
 		</xsl:if>
@@ -242,18 +242,18 @@
 			</xsl:if>
 			
 			<xsl:attribute name="class">
-				<xsl:text>alex-form-btn</xsl:text>
+				<xsl:text>helios-form-btn</xsl:text>
 			</xsl:attribute>
 			
-			<div class="alex-form-btn-border"></div>
+			<div class="helios-form-btn-border"></div>
 			
 			<xsl:if test="$type = 'submit'">
-				<div class="alex-form-btn-bg-slider"></div>
+				<div class="helios-form-btn-bg-slider"></div>
 			</xsl:if>
 			
 			
-			<div class="alex-form-btn-text-ctn">
-				<div class="alex-form-btn-text-title">
+			<div class="helios-form-btn-text-ctn">
+				<div class="helios-form-btn-text-title">
 				
 					<xsl:choose>
 						<xsl:when test="exslt:object-type($text) = 'string'">
@@ -273,25 +273,25 @@
 				</div>
 				
 				<xsl:if test="$type = 'submit'">
-					<div class="alex-form-btn-text-icon-ctn">
-						<div class="alex-form-btn-text-icon-inner success">
+					<div class="helios-form-btn-text-icon-ctn">
+						<div class="helios-form-btn-text-icon-inner success">
 							<xsl:choose>
 								<xsl:when test="string-length($success-text) != 0">
 									<xsl:value-of select="$success-text" />
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:call-template name="alex-form-checked-icon" />
+									<xsl:call-template name="helios-form-checked-icon" />
 								</xsl:otherwise>
 							</xsl:choose>
 						</div>
 						
-						<div class="alex-form-btn-text-icon-inner error">
+						<div class="helios-form-btn-text-icon-inner error">
 							<xsl:choose>
 								<xsl:when test="string-length($success-text) != 0">
 									<xsl:value-of select="$error-text" />
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:call-template name="alex-form-X-icon" />
+									<xsl:call-template name="helios-form-X-icon" />
 								</xsl:otherwise>
 							</xsl:choose>
 						</div>
@@ -302,7 +302,7 @@
 	</div>
 </xsl:template>
 
-<xsl:template name="alex-form-label-generator">
+<xsl:template name="helios-form-label-generator">
 	<xsl:param name="element" select="'input'" />
 	<xsl:param name="class" select="''" />
 	<xsl:param name="label-text" select="''" />
@@ -312,7 +312,7 @@
 	<xsl:param name="with-icons" select="true()" />
 	
 	<xsl:attribute name="class">
-		<xsl:text>alex-form-field</xsl:text>
+		<xsl:text>helios-form-field</xsl:text>
 		<xsl:text> </xsl:text>
 		<xsl:value-of select="$element" />
 		
@@ -331,7 +331,7 @@
 	</xsl:attribute>
 	
 	<xsl:if test="string-length($label-text) != 0">
-		<div class="alex-form-field-label alex-form-field-label-placeholder">
+		<div class="helios-form-field-label helios-form-field-label-placeholder">
 			<label>
 				<xsl:if test="string-length($label-id) != 0">
 					<xsl:attribute name="for">
@@ -347,22 +347,22 @@
 	</xsl:if>
 	
 	<xsl:if test="$with-error-label = true()">
-		<div class="alex-form-field-label alex-form-field-label-error"></div>
+		<div class="helios-form-field-label helios-form-field-label-error"></div>
 	</xsl:if>
 	
 	<xsl:if test="$with-icons = true()">
-		<div class="alex-form-field-icons">
-			<div class="alex-form-field-icons-checked">
-				<xsl:call-template name="alex-form-checked-icon" />
+		<div class="helios-form-field-icons">
+			<div class="helios-form-field-icons-checked">
+				<xsl:call-template name="helios-form-checked-icon" />
 			</div>
-			<div class="alex-form-field-icons-x">
-				<xsl:call-template name="alex-form-X-icon" />
+			<div class="helios-form-field-icons-x">
+				<xsl:call-template name="helios-form-X-icon" />
 			</div>
 		</div>
 	</xsl:if>
 </xsl:template>
 
-<xsl:template name="alex-form-field">
+<xsl:template name="helios-form-field">
 	<xsl:param name="element" select="'input'" />
 	<xsl:param name="type" select="'text'" />
 	<!-- Pour les inputs mettre .small ou .big
@@ -376,7 +376,7 @@
 	<xsl:param name="disabled" select="false()" />
 	
 	<div>
-		<xsl:call-template name="alex-form-label-generator">
+		<xsl:call-template name="helios-form-label-generator">
 			<xsl:with-param name="element" select="$element" />
 			<xsl:with-param name="class" select="$class" />
 			<xsl:with-param name="label-text" select="$label-text" />
@@ -423,7 +423,7 @@
 	</div>
 </xsl:template>
 
-<xsl:template name="alex-form-dropdown">
+<xsl:template name="helios-form-dropdown">
 	<xsl:param name="class" select="''" />
 	<xsl:param name="ctn-class" select="''" />
 	<xsl:param name="all-title" select="''" />
@@ -436,7 +436,7 @@
 	
 	<div>
 		<xsl:attribute name="class">
-			<xsl:text>alex-form-field-ctn</xsl:text>
+			<xsl:text>helios-form-field-ctn</xsl:text>
 			
 			<xsl:if test="string-length($ctn-class) != 0">
 				<xsl:text> </xsl:text>
@@ -452,7 +452,7 @@
 		</xsl:call-template>
 		
 		<div>
-			<xsl:call-template name="alex-form-label-generator">
+			<xsl:call-template name="helios-form-label-generator">
 				<xsl:with-param name="element" select="'select'" />
 				<xsl:with-param name="class" select="$class" />
 				<xsl:with-param name="label-text" select="$label-text" />
@@ -461,22 +461,22 @@
 				<xsl:with-param name="with-icons" select="false()" />
 			</xsl:call-template>
 		
-			<div class="alex-form-dropdown">
-				<button type="button" class="alex-form-select" tabindex="-1">
-					<span class="alex-form-select-placeholder">
+			<div class="helios-form-dropdown">
+				<button type="button" class="helios-form-select" tabindex="-1">
+					<span class="helios-form-select-placeholder">
 						<xsl:value-of select="$all-title" />
 					</span>
 					
-					<span class="alex-form-select-svg-ctn">
-						<xsl:call-template name="alex-form-fleche-down" />
+					<span class="helios-form-select-svg-ctn">
+						<xsl:call-template name="helios-form-fleche-down" />
 					</span>
 				</button>
 				
 				<input type="hidden" name="{$name}" id="{$element-id}" class="{$class}" />
 				
-				<div class="alex-form-dropdown-popup">
+				<div class="helios-form-dropdown-popup">
 					<xsl:if test="$can-select-all = true()">
-						<button type="button" class="alex-form-dropdown-item all">
+						<button type="button" class="helios-form-dropdown-item all">
 							<span>
 								<xsl:value-of select="$all-title" />
 							</span>
@@ -489,36 +489,36 @@
 	</div>
 </xsl:template>
 
-<xsl:template name="alex-form-dropdown-item">
+<xsl:template name="helios-form-dropdown-item">
 	<xsl:param name="title" select="''" />
 	<xsl:param name="handle" select="''" />
 	
-	<button type="button" class="alex-form-dropdown-item" data-value="{$handle}">
+	<button type="button" class="helios-form-dropdown-item" data-value="{$handle}">
 		<span>
 			<xsl:value-of select="$title" />
 		</span>
 	</button>
 </xsl:template>
 
-<xsl:template name="alex-form-fleche-down">
+<xsl:template name="helios-form-fleche-down">
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="90px" height="50px" viewBox="0 0 90 50" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
 		<polyline fill="none" stroke="#FFFFFF" stroke-width="19" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="15.5,10 45,39.5 45,39.5 75,10 "/>
 	</svg>
 </xsl:template>
 
-<xsl:template name="alex-form-checked-icon">
-	<svg class="alex-form-checked-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<xsl:template name="helios-form-checked-icon">
+	<svg class="helios-form-checked-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		 width="21.114px" height="17.601px" viewBox="0 0 21.114 17.601" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
 		<polyline fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="0.707,11.967 4.927,16.187 20.407,0.707"/>
 	</svg>
 </xsl:template>
 
-<xsl:template name="alex-form-X-icon">
+<xsl:template name="helios-form-X-icon">
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		width="12.408px" height="12.583px" viewBox="0 0 12.408 12.583" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
-		<polyline class="alex-form-X" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="11.665,0.958 6.185,6.417 0.664,0.979 "/>
-		<polyline class="alex-form-X" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="0.706,11.875 6.185,6.417 11.706,11.854"/>
+		<polyline class="helios-form-X" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="11.665,0.958 6.185,6.417 0.664,0.979 "/>
+		<polyline class="helios-form-X" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="0.706,11.875 6.185,6.417 11.706,11.854"/>
 	</svg>
 </xsl:template>
 
