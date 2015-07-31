@@ -527,7 +527,7 @@
 	<xsl:param name="condition" select="'IE'" />
 	
 	<xsl:text disable-output-escaping="yes">&lt;</xsl:text>!--[if <xsl:value-of select="$condition" />]<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
-	<xsl:copy-of select="exsl:node-set($content)/*" />
+	<xsl:copy-of select="exslt:node-set($content)/*" />
 	<xsl:text disable-output-escaping="yes">&lt;</xsl:text>![endif]--<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 </xsl:template>
 
