@@ -308,8 +308,8 @@
 	<xsl:param name="label-text" select="''" />
 	<xsl:param name="label-id" select="''" />
 	<xsl:param name="disabled" select="false()" />
-	<xsl:param name="with-error-label" select="false()" />
-	<xsl:param name="with-icons" select="false()" />
+	<xsl:param name="with-error-label" select="true()" />
+	<xsl:param name="with-icons" select="true()" />
 	
 	<xsl:attribute name="class">
 		<xsl:text>alex-form-field</xsl:text>
